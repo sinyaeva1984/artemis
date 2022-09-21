@@ -38,24 +38,24 @@ jobs:
 
      # Runs a set of commands using the runners shell
       - name: Switch branches
-        working-directory: ${{ app_name }}
+        working-directory: ${{ env.app_name }}
         run: |
           git checkout ${{ env.app_version }}
           ls -ls 
 
      # Runs the set of commands using the runners shell
       - name: Build image
-        working-directory: ${{ app_name }}
+        working-directory: ${{ env.app_name }}
         run: |
-          docker build -t ${{ app_name }}:${{ env.app_version }} .
+          docker build -t ${{ env.app_name }}:${{ env.app_version }} .
            
                     
 
      # Runs a set of commands using the runners shell
       - name: Tag image
-        working-directory: ${{ app_name }}
+        working-directory: ${{ env.app_name }}
         run: |
-          docker image tag ${{ app_name }}:${{ env.app_version }} ${{ env.repo_region }}-docker.pkg.dev/${{ env.project }}/${{ app_name }}/${{ app_name }}:${{ env.app_version }}
+          docker image tag ${{ env.app_name }}:${{ env.app_version }} ${{ env.repo_region }}-docker.pkg.dev/${{ env.project }}/${{ env.app_name }}/${{ env.app_name }}:${{ env.app_version }}
 
 
 
@@ -81,7 +81,7 @@ jobs:
 
     # Runs a set of commands using the runners shell
       - name: Image push
-        working-directory: ${{ app_name }}
+        working-directory: ${{ env.app_name }}
         run: |
-          docker push ${{ env.repo_region }}-docker.pkg.dev/${{ env.project_id }}/${{ app_name }}/${{ app_name }}:${{ env.app_version }}    
+          docker push ${{ env.repo_region }}-docker.pkg.dev/${{ env.project_id }}/${{ env.app_name }}/${{ env.app_name }}:${{ env.app_version }}    
            
